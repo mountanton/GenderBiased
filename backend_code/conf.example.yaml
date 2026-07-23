@@ -1,0 +1,49 @@
+# LLM Configuration for Gender Bias Benchmark
+# Rename to conf.yaml
+
+# deepseek-chat, claude-sonnet-4-6, deepseek-reasoner, gemn gpt-4o-mini, gpt-4o-2024-08-06
+llm:
+  model: ['deepseek-chat', 'claude-sonnet-4-6'] 
+
+api_keys: 
+  deepseek: YOUR KEY
+  gpt: YOUR KEY
+  gemini: YOUR KEY
+  claude: YOUR KEY
+
+number_of_runs: 3
+
+file_path_benchmark: benchmark path
+
+file_path_output: output folder path
+
+# t1: What to Study
+# t2: Literacy and numerical skills
+# t3: Stereotypes at work 
+# t4: Household Roles
+# t5: Gender Diversity Handling
+# t6: Role in Parenting
+# t7: Marital infidelity
+# t8: Child custody
+# t9: Beneficiaries in a will
+# t10: Elderly care
+# Write all for all topics or choose specific topics
+topics : ['t1','t2']
+
+penalty_p: [2, 3]
+
+penalty_p_dir: 2
+
+# [alpha, beta] pairs
+directional_weights: [
+  [1.0, 0.2], 
+  [1.0, 0.4], 
+  [1.0, 0.6], 
+  [1.0, 0.8],
+  [2.0, 0.2], 
+  [2.0, 0.4]
+]
+
+temperature: 0.4
+
+max_tokens: 8000

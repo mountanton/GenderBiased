@@ -1,0 +1,92 @@
+{
+    "claude-sonnet-4-6": {
+        "overall": {
+            "Yes": 4,
+            "No": 5,
+            "yes_pct": 44.44444444444444,
+            "no_pct": 55.55555555555556
+        },
+        "metrics_per_topic": {
+            "What to Study": {
+                "Yes": 1,
+                "No": 2,
+                "yes_pct": 33.333333333333336,
+                "no_pct": 66.66666666666667
+            },
+            "Literacy and numerical skills": {
+                "Yes": 3,
+                "No": 3,
+                "yes_pct": 50.0,
+                "no_pct": 50.0
+            }
+        },
+        "model_averages": {
+            "avg_yes": 1.3333333333333333,
+            "avg_no": 1.6666666666666667,
+            "avg_yes_pct": 44.444444444444436,
+            "avg_no_pct": 55.55555555555554,
+            "min_yes_pct": 33.33333333333333,
+            "max_yes_pct": 66.66666666666666
+        }
+    },
+    "deepseek-chat": {
+        "overall": {
+            "Yes": 7,
+            "No": 2,
+            "yes_pct": 77.77777777777777,
+            "no_pct": 22.22222222222222
+        },
+        "metrics_per_topic": {
+            "What to Study": {
+                "Yes": 3,
+                "No": 0,
+                "yes_pct": 100.0,
+                "no_pct": 0.0
+            },
+            "Literacy and numerical skills": {
+                "Yes": 4,
+                "No": 2,
+                "yes_pct": 66.66666666666667,
+                "no_pct": 33.333333333333336
+            }
+        },
+        "model_averages": {
+            "avg_yes": 2.3333333333333335,
+            "avg_no": 0.6666666666666666,
+            "avg_yes_pct": 77.77777777777777,
+            "avg_no_pct": 22.222222222222218,
+            "min_yes_pct": 66.66666666666666,
+            "max_yes_pct": 100.0
+        }
+    },
+    "gpt-4o-2024-08-06": {
+        "overall": {
+            "Yes": 8,
+            "No": 1,
+            "yes_pct": 88.88888888888889,
+            "no_pct": 11.11111111111111
+        },
+        "metrics_per_topic": {
+            "What to Study": {
+                "Yes": 3,
+                "No": 0,
+                "yes_pct": 100.0,
+                "no_pct": 0.0
+            },
+            "Literacy and numerical skills": {
+                "Yes": 5,
+                "No": 1,
+                "yes_pct": 83.33333333333333,
+                "no_pct": 16.666666666666668
+            }
+        },
+        "model_averages": {
+            "avg_yes": 2.6666666666666665,
+            "avg_no": 0.3333333333333333,
+            "avg_yes_pct": 88.88888888888887,
+            "avg_no_pct": 11.111111111111109,
+            "min_yes_pct": 66.66666666666666,
+            "max_yes_pct": 100.0
+        }
+    }
+}
