@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AI Model Leaderboard</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+    <main class="container">
+        <header>
+            <img
+                src="https://aprendeinglestoday.com/wp-content/uploads/hypatia-of-alexandria.jpg"
+                alt="Logo"
+                class="header-logo"
+            />
+            <h1>Hypatia Leaderboard - Gender Bias Evaluation</h1>
+            <p>Comparison and ranking of AI models under the scope of AI ethics, specifically gender bias.</p>
+        </header>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr id="leaderboard-header">
+                        <!-- Headers will inject here dynamically -->
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                    <!-- Rows will inject here dynamically-->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Some plots</h2>
+            <p>Description</p>
+        </div>
+
+        <div class="charts-wrapper">
+            <img src="llm_performance.png" alt="Models Evaluation Chart 1" class="chart-image"/>
+        </div>
+        <p class="chart-description">Figure 1:  Comparative evaluation of gender bias on 6 models (50% corresponds to gender neutrality)</p>
+
+        <footer class="footer">
+            Version 1.0 · 2026-2027 CSD-UOC & FORTH
+            <a href="about.html" class="about-btn">About</a>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+
+    </body>
+</html>
