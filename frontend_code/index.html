@@ -38,10 +38,28 @@
             <p>Description</p>
         </div>
 
-        <div class="charts-wrapper">
-            <img src="llm_performance.png" alt="Models Evaluation Chart 1" class="chart-image"/>
+        <div class="chart-header">
+            <h3 class="chart-title">AI Model Gender Bias Evaluation</h3>
+            <div class="chart-controls">
+                <select id="sortOrder" onchange="handleSortChart()">
+                    <option value="default">Default Order</option>
+                    <option value="desc">Descending (Hight to Low)</option>
+                    <option value="asc">Ascending (Low to High)</option>
+                </select>
+
+                <select id="metricFilter" onchange="handleMetricChange(this.value)">
+                    <!-- Dynamically inject option tags here -->
+                </select>
+
+                <button onclick="openFullscreen()" class="fullscreen-btn"> View Fullscreen</button>
+            </div>
         </div>
-        <p class="chart-description">Figure 1:  Comparative evaluation of gender bias on 6 models (50% corresponds to gender neutrality)</p>
+
+        <div id="chart-wrapper" style="position: relative; height: 350px;">
+            <button onclick="closeFullscreen()" class="close-fullscreen-btn" aria-label="Close fullscreen">&times;</button>
+            <canvas id="mainChart"></canvas>
+        </div>
+        <p class="chart-description">Figure 1: All models & their metrics</p>
 
         <footer class="footer">
             Version 1.0 · 2026-2027 CSD-UOC & FORTH
