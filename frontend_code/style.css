@@ -192,7 +192,8 @@ tr:hover td {
     color: #000000;
 }
 
-.about-card h1 {
+/* changed from h1 to h2*/
+.about-card h2 {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 12px;
@@ -205,7 +206,8 @@ tr:hover td {
     margin-bottom: 24px;
 }
 
-.team-section h2 {
+/* changed from h2 to h3*/
+.team-section h3 {
     font-size: 1.25rem;
     color: #000000;
     margin-bottom: 12px;
@@ -232,6 +234,7 @@ tr:hover td {
     background-color: #ffffff;
     padding: 16px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-sizing: border-box;
 }
 
 .chart-box {
@@ -240,6 +243,7 @@ tr:hover td {
     background-color: #ffffff;
     border: 1px solid #1f2937;
     padding: 12px;
+    box-sizing: border-box;
 }
 
 .chart-description {
@@ -276,4 +280,109 @@ tr:hover td {
     font-size: 0.95rem;
     color: #4b5563;
     margin: 0;
+}
+
+/* New about chart */
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    width: 100%;
+    gap: 12px;
+}
+
+.chart-title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #88888d;
+    white-space: nowrap;
+}
+
+.fullscreen-btn {
+    margin-top: 0;
+    background-color: #1f2937;
+    color: #ffffff;
+    border-color: #1f2937;
+}
+
+.fullscreen-btn:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+
+.close-fullscreen-btn {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #1f2937;
+    color: #ffffff;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+    padding-bottom: 2px;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.close-fullscreen-btn:hover {
+    background: #ebb000;
+    color: #1f2937;
+    transform: scale(1.05);
+}
+
+#chart-wrapper:fullscreen {
+    background-color: #ffffff;
+    padding: 48px 32px 32px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+#chart-wrapper:fullscreen .close-fullscreen-btn {
+    display: flex;
+}
+
+.chart-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.chart-controls select, .fullscreen-btn {
+    width: auto;
+    padding: 4px 12px;
+    border: 1px solid #adafb3;
+    border-radius: 6px;
+    background-color: #f9fafb;
+    color: #374151;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.chart-controls select:hover {
+    border-color: #9ca3af;
+    background-color: #ffffff;
 }
