@@ -184,13 +184,13 @@ const  METRIC_COLORS = [
     '#ec4899', '#34242c', '#8d99e0', '#ec6348', '#256b15'
 ];
 
-function populateMetricDropdown(metric)
+function populateMetricDropdown(metrics)
 {
     const metricSelect = document.getElementById('metricFilter');
     if(!metricSelect) return;
 
     metricSelect.innerHTML = '<option value="all">Show All Metrics</option>';
-    metricSelect.forEach(metric => {
+    metrics.forEach(metric => {
         const option = document.createElement('option');
         option.value = metric;
         option.textContent = metric;
@@ -234,7 +234,7 @@ function renderOrUpdateChart(dataArray, selectedMetric = 'all')
         myInteractiveChart.destroy();
     }
 
-    myInteractiveChart = new CharacterData(ctx, {
+    myInteractiveChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels,
