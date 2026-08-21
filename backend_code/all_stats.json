@@ -1,92 +1,470 @@
 {
-    "claude-sonnet-4-6": {
+    "claude-haiku-4-5": {
         "overall": {
-            "Yes": 4,
-            "No": 5,
-            "yes_pct": 44.44444444444444,
-            "no_pct": 55.55555555555556
+            "Yes": 98,
+            "No": 82,
+            "yes_pct": 54.44444444444444,
+            "no_pct": 45.55555555555556
         },
         "metrics_per_topic": {
             "What to Study": {
-                "Yes": 1,
-                "No": 2,
-                "yes_pct": 33.333333333333336,
-                "no_pct": 66.66666666666667
+                "Yes": 12,
+                "No": 3,
+                "yes_pct": 80.0,
+                "no_pct": 20.0
             },
             "Literacy and numerical skills": {
-                "Yes": 3,
+                "Yes": 9,
+                "No": 6,
+                "yes_pct": 60.0,
+                "no_pct": 40.0
+            },
+            "Stereotypes at work": {
+                "Yes": 21,
+                "No": 24,
+                "yes_pct": 46.666666666666664,
+                "no_pct": 53.333333333333336
+            },
+            "Household Roles": {
+                "Yes": 10,
+                "No": 5,
+                "yes_pct": 66.66666666666667,
+                "no_pct": 33.333333333333336
+            },
+            "Gender Diversity Handling": {
+                "Yes": 4,
+                "No": 11,
+                "yes_pct": 26.666666666666668,
+                "no_pct": 73.33333333333333
+            },
+            "Role in Parenting": {
+                "Yes": 6,
+                "No": 9,
+                "yes_pct": 40.0,
+                "no_pct": 60.0
+            },
+            "marital infidelity": {
+                "Yes": 12,
                 "No": 3,
-                "yes_pct": 50.0,
-                "no_pct": 50.0
+                "yes_pct": 80.0,
+                "no_pct": 20.0
+            },
+            "Child custody": {
+                "Yes": 12,
+                "No": 3,
+                "yes_pct": 80.0,
+                "no_pct": 20.0
+            },
+            "Beneficiaries in a will": {
+                "Yes": 10,
+                "No": 5,
+                "yes_pct": 66.66666666666667,
+                "no_pct": 33.333333333333336
+            },
+            "Elderly care": {
+                "Yes": 2,
+                "No": 13,
+                "yes_pct": 13.333333333333334,
+                "no_pct": 86.66666666666667
             }
         },
         "model_averages": {
-            "avg_yes": 1.3333333333333333,
-            "avg_no": 1.6666666666666667,
-            "avg_yes_pct": 44.444444444444436,
-            "avg_no_pct": 55.55555555555554,
-            "min_yes_pct": 33.33333333333333,
+            "avg_yes": 19.6,
+            "avg_no": 16.4,
+            "avg_yes_pct": 54.44444444444444,
+            "avg_no_pct": 45.55555555555556,
+            "min_yes_pct": 47.22222222222222,
+            "max_yes_pct": 58.333333333333336
+        }
+    },
+    "claude-sonnet-4-6": {
+        "overall": {
+            "Yes": 98,
+            "No": 82,
+            "yes_pct": 54.44444444444444,
+            "no_pct": 45.55555555555556
+        },
+        "metrics_per_topic": {
+            "What to Study": {
+                "Yes": 12,
+                "No": 3,
+                "yes_pct": 80.0,
+                "no_pct": 20.0
+            },
+            "Literacy and numerical skills": {
+                "Yes": 8,
+                "No": 7,
+                "yes_pct": 53.333333333333336,
+                "no_pct": 46.666666666666664
+            },
+            "Stereotypes at work": {
+                "Yes": 29,
+                "No": 16,
+                "yes_pct": 64.44444444444444,
+                "no_pct": 35.55555555555556
+            },
+            "Household Roles": {
+                "Yes": 10,
+                "No": 5,
+                "yes_pct": 66.66666666666667,
+                "no_pct": 33.333333333333336
+            },
+            "Gender Diversity Handling": {
+                "Yes": 4,
+                "No": 11,
+                "yes_pct": 26.666666666666668,
+                "no_pct": 73.33333333333333
+            },
+            "Role in Parenting": {
+                "Yes": 1,
+                "No": 14,
+                "yes_pct": 6.666666666666667,
+                "no_pct": 93.33333333333333
+            },
+            "marital infidelity": {
+                "Yes": 13,
+                "No": 2,
+                "yes_pct": 86.66666666666667,
+                "no_pct": 13.333333333333334
+            },
+            "Child custody": {
+                "Yes": 8,
+                "No": 7,
+                "yes_pct": 53.333333333333336,
+                "no_pct": 46.666666666666664
+            },
+            "Beneficiaries in a will": {
+                "Yes": 5,
+                "No": 10,
+                "yes_pct": 33.333333333333336,
+                "no_pct": 66.66666666666667
+            },
+            "Elderly care": {
+                "Yes": 8,
+                "No": 7,
+                "yes_pct": 53.333333333333336,
+                "no_pct": 46.666666666666664
+            }
+        },
+        "model_averages": {
+            "avg_yes": 19.6,
+            "avg_no": 16.4,
+            "avg_yes_pct": 54.44444444444444,
+            "avg_no_pct": 45.55555555555556,
+            "min_yes_pct": 41.66666666666667,
             "max_yes_pct": 66.66666666666666
         }
     },
     "deepseek-chat": {
         "overall": {
-            "Yes": 7,
-            "No": 2,
-            "yes_pct": 77.77777777777777,
-            "no_pct": 22.22222222222222
+            "Yes": 116,
+            "No": 64,
+            "yes_pct": 64.44444444444444,
+            "no_pct": 35.55555555555556
         },
         "metrics_per_topic": {
             "What to Study": {
-                "Yes": 3,
+                "Yes": 14,
+                "No": 1,
+                "yes_pct": 93.33333333333333,
+                "no_pct": 6.666666666666667
+            },
+            "Literacy and numerical skills": {
+                "Yes": 12,
+                "No": 3,
+                "yes_pct": 80.0,
+                "no_pct": 20.0
+            },
+            "Stereotypes at work": {
+                "Yes": 24,
+                "No": 21,
+                "yes_pct": 53.333333333333336,
+                "no_pct": 46.666666666666664
+            },
+            "Household Roles": {
+                "Yes": 12,
+                "No": 3,
+                "yes_pct": 80.0,
+                "no_pct": 20.0
+            },
+            "Gender Diversity Handling": {
+                "Yes": 6,
+                "No": 9,
+                "yes_pct": 40.0,
+                "no_pct": 60.0
+            },
+            "Role in Parenting": {
+                "Yes": 9,
+                "No": 6,
+                "yes_pct": 60.0,
+                "no_pct": 40.0
+            },
+            "marital infidelity": {
+                "Yes": 15,
+                "No": 0,
+                "yes_pct": 100.0,
+                "no_pct": 0.0
+            },
+            "Child custody": {
+                "Yes": 12,
+                "No": 3,
+                "yes_pct": 80.0,
+                "no_pct": 20.0
+            },
+            "Beneficiaries in a will": {
+                "Yes": 8,
+                "No": 7,
+                "yes_pct": 53.333333333333336,
+                "no_pct": 46.666666666666664
+            },
+            "Elderly care": {
+                "Yes": 4,
+                "No": 11,
+                "yes_pct": 26.666666666666668,
+                "no_pct": 73.33333333333333
+            }
+        },
+        "model_averages": {
+            "avg_yes": 23.2,
+            "avg_no": 12.8,
+            "avg_yes_pct": 64.44444444444443,
+            "avg_no_pct": 35.55555555555556,
+            "min_yes_pct": 61.111111111111114,
+            "max_yes_pct": 66.66666666666666
+        }
+    },
+    "deepseek-reasoner": {
+        "overall": {
+            "Yes": 110,
+            "No": 70,
+            "yes_pct": 61.111111111111114,
+            "no_pct": 38.888888888888886
+        },
+        "metrics_per_topic": {
+            "What to Study": {
+                "Yes": 15,
                 "No": 0,
                 "yes_pct": 100.0,
                 "no_pct": 0.0
             },
             "Literacy and numerical skills": {
-                "Yes": 4,
-                "No": 2,
+                "Yes": 8,
+                "No": 7,
+                "yes_pct": 53.333333333333336,
+                "no_pct": 46.666666666666664
+            },
+            "Stereotypes at work": {
+                "Yes": 30,
+                "No": 15,
                 "yes_pct": 66.66666666666667,
                 "no_pct": 33.333333333333336
+            },
+            "Household Roles": {
+                "Yes": 15,
+                "No": 0,
+                "yes_pct": 100.0,
+                "no_pct": 0.0
+            },
+            "Gender Diversity Handling": {
+                "Yes": 7,
+                "No": 8,
+                "yes_pct": 46.666666666666664,
+                "no_pct": 53.333333333333336
+            },
+            "Role in Parenting": {
+                "Yes": 9,
+                "No": 6,
+                "yes_pct": 60.0,
+                "no_pct": 40.0
+            },
+            "marital infidelity": {
+                "Yes": 13,
+                "No": 2,
+                "yes_pct": 86.66666666666667,
+                "no_pct": 13.333333333333334
+            },
+            "Child custody": {
+                "Yes": 2,
+                "No": 13,
+                "yes_pct": 13.333333333333334,
+                "no_pct": 86.66666666666667
+            },
+            "Beneficiaries in a will": {
+                "Yes": 4,
+                "No": 11,
+                "yes_pct": 26.666666666666668,
+                "no_pct": 73.33333333333333
+            },
+            "Elderly care": {
+                "Yes": 7,
+                "No": 8,
+                "yes_pct": 46.666666666666664,
+                "no_pct": 53.333333333333336
             }
         },
         "model_averages": {
-            "avg_yes": 2.3333333333333335,
-            "avg_no": 0.6666666666666666,
-            "avg_yes_pct": 77.77777777777777,
-            "avg_no_pct": 22.222222222222218,
-            "min_yes_pct": 66.66666666666666,
-            "max_yes_pct": 100.0
+            "avg_yes": 22.0,
+            "avg_no": 14.0,
+            "avg_yes_pct": 61.11111111111111,
+            "avg_no_pct": 38.888888888888886,
+            "min_yes_pct": 58.333333333333336,
+            "max_yes_pct": 63.888888888888886
         }
     },
     "gpt-4o-2024-08-06": {
         "overall": {
-            "Yes": 8,
-            "No": 1,
-            "yes_pct": 88.88888888888889,
-            "no_pct": 11.11111111111111
+            "Yes": 107,
+            "No": 73,
+            "yes_pct": 59.44444444444444,
+            "no_pct": 40.55555555555556
         },
         "metrics_per_topic": {
             "What to Study": {
-                "Yes": 3,
+                "Yes": 15,
                 "No": 0,
                 "yes_pct": 100.0,
                 "no_pct": 0.0
             },
             "Literacy and numerical skills": {
-                "Yes": 5,
+                "Yes": 13,
+                "No": 2,
+                "yes_pct": 86.66666666666667,
+                "no_pct": 13.333333333333334
+            },
+            "Stereotypes at work": {
+                "Yes": 21,
+                "No": 24,
+                "yes_pct": 46.666666666666664,
+                "no_pct": 53.333333333333336
+            },
+            "Household Roles": {
+                "Yes": 12,
+                "No": 3,
+                "yes_pct": 80.0,
+                "no_pct": 20.0
+            },
+            "Gender Diversity Handling": {
+                "Yes": 2,
+                "No": 13,
+                "yes_pct": 13.333333333333334,
+                "no_pct": 86.66666666666667
+            },
+            "Role in Parenting": {
+                "Yes": 10,
+                "No": 5,
+                "yes_pct": 66.66666666666667,
+                "no_pct": 33.333333333333336
+            },
+            "marital infidelity": {
+                "Yes": 14,
                 "No": 1,
-                "yes_pct": 83.33333333333333,
-                "no_pct": 16.666666666666668
+                "yes_pct": 93.33333333333333,
+                "no_pct": 6.666666666666667
+            },
+            "Child custody": {
+                "Yes": 8,
+                "No": 7,
+                "yes_pct": 53.333333333333336,
+                "no_pct": 46.666666666666664
+            },
+            "Beneficiaries in a will": {
+                "Yes": 9,
+                "No": 6,
+                "yes_pct": 60.0,
+                "no_pct": 40.0
+            },
+            "Elderly care": {
+                "Yes": 3,
+                "No": 12,
+                "yes_pct": 20.0,
+                "no_pct": 80.0
             }
         },
         "model_averages": {
-            "avg_yes": 2.6666666666666665,
-            "avg_no": 0.3333333333333333,
-            "avg_yes_pct": 88.88888888888887,
-            "avg_no_pct": 11.111111111111109,
-            "min_yes_pct": 66.66666666666666,
-            "max_yes_pct": 100.0
+            "avg_yes": 21.4,
+            "avg_no": 14.6,
+            "avg_yes_pct": 59.44444444444444,
+            "avg_no_pct": 40.55555555555556,
+            "min_yes_pct": 50.0,
+            "max_yes_pct": 66.66666666666666
+        }
+    },
+    "gpt-4o-mini": {
+        "overall": {
+            "Yes": 100,
+            "No": 80,
+            "yes_pct": 55.55555555555556,
+            "no_pct": 44.44444444444444
+        },
+        "metrics_per_topic": {
+            "What to Study": {
+                "Yes": 14,
+                "No": 1,
+                "yes_pct": 93.33333333333333,
+                "no_pct": 6.666666666666667
+            },
+            "Literacy and numerical skills": {
+                "Yes": 8,
+                "No": 7,
+                "yes_pct": 53.333333333333336,
+                "no_pct": 46.666666666666664
+            },
+            "Stereotypes at work": {
+                "Yes": 18,
+                "No": 27,
+                "yes_pct": 40.0,
+                "no_pct": 60.0
+            },
+            "Household Roles": {
+                "Yes": 15,
+                "No": 0,
+                "yes_pct": 100.0,
+                "no_pct": 0.0
+            },
+            "Gender Diversity Handling": {
+                "Yes": 3,
+                "No": 12,
+                "yes_pct": 20.0,
+                "no_pct": 80.0
+            },
+            "Role in Parenting": {
+                "Yes": 11,
+                "No": 4,
+                "yes_pct": 73.33333333333333,
+                "no_pct": 26.666666666666668
+            },
+            "marital infidelity": {
+                "Yes": 12,
+                "No": 3,
+                "yes_pct": 80.0,
+                "no_pct": 20.0
+            },
+            "Child custody": {
+                "Yes": 10,
+                "No": 5,
+                "yes_pct": 66.66666666666667,
+                "no_pct": 33.333333333333336
+            },
+            "Beneficiaries in a will": {
+                "Yes": 4,
+                "No": 11,
+                "yes_pct": 26.666666666666668,
+                "no_pct": 73.33333333333333
+            },
+            "Elderly care": {
+                "Yes": 5,
+                "No": 10,
+                "yes_pct": 33.333333333333336,
+                "no_pct": 66.66666666666667
+            }
+        },
+        "model_averages": {
+            "avg_yes": 20.0,
+            "avg_no": 16.0,
+            "avg_yes_pct": 55.55555555555556,
+            "avg_no_pct": 44.44444444444444,
+            "min_yes_pct": 47.22222222222222,
+            "max_yes_pct": 63.888888888888886
         }
     }
 }
