@@ -69,7 +69,7 @@ def averagePerformance(labels, mean, min_vals, max_vals):
     # Optional subtle grid
     plt.grid(axis='y', linestyle='--', linewidth=0.5, alpha=0.5)
  
-    plt.ylim(0, 100)
+    plt.ylim(35, 70)
     # Tight layout
     plt.tight_layout()
 
@@ -108,7 +108,8 @@ def meanNormalizedScore(labels, mean):
             fontsize=13
         )
 
-    plt.ylim(-1, 1)
+    #plt.ylim(-1, 1)
+    plt.ylim(-0.1,0.4)
     plt.xlim(-1, len(labels))
     plt.tight_layout()
     plt.show()
@@ -182,6 +183,203 @@ def directionalUtility(labels, mean, config_p, directional_weights):
     plt.tight_layout()
     plt.show()
 
+def relativeToIdealBaseline(labels, mean):
+
+    # Difference from ideal baseline (50)
+    relative_score = mean - 50
+
+    x = np.arange(len(labels))
+
+    plt.figure(figsize=(12, 6))
+
+    # Bars: black for positive, gray for negative
+    colors = ['black' if v >= 0 else 'gray' for v in relative_score]
+
+    bars = plt.bar(
+        x,
+        relative_score,
+        width=0.7,
+        color=colors
+    )
+
+    # Ideal baseline: score difference = 0
+    plt.axhline(
+        0,
+        color='red',
+        linestyle='--',
+        linewidth=1.5
+    )
+
+    # X-axis
+    plt.xticks(
+        x,
+        labels,
+        rotation=25,
+        ha='right',
+        fontsize=14
+    )
+
+    plt.yticks(fontsize=14)
+
+    # Labels
+    plt.ylabel(
+        r'$f(x) = \mathrm{Score} - 50$',
+        fontsize=18
+    )
+
+    plt.title(
+        'Performance Relative to Ideal Baseline (50)',
+        fontsize=22
+    )
+
+    # Add values above/below bars
+    for bar, value in zip(bars, relative_score):
+
+        if value >= 0:
+            y = value + 0.25
+            va = 'bottom'
+        else:
+            y = value - 0.35
+            va = 'top'
+
+        sign = '+' if value > 0 else ''
+
+        plt.text(
+            bar.get_x() + bar.get_width() / 2,
+            y,
+            f'{sign}{value:.0f}',
+            ha='center',
+            va=va,
+            fontsize=16
+        )
+
+    # Limits
+    plt.ylim(-2.5, max(relative_score) + 1.2)
+
+    # Grid
+    plt.grid(
+        axis='y',
+        linestyle='--',
+        linewidth=1,
+        alpha=0.35
+    )
+
+    # Remove top/right borders
+    ax = plt.gca()
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+
+    plt.tight_layout()
+
+    # Save for paper
+    plt.savefig(
+        "relative_to_ideal_baseline.png",
+        dpi=300,
+        bbox_inches='tight'
+    )
+
+    plt.show()
+
+def compareBiasMeasures(labels, mean, p_values):
+    # Normalized bias score
+    z = (mean - 50) / 50
+
+    x = np.arange(len(labels))
+
+    fig, axes = plt.subplots(
+        2, 1,
+        figsize=(10, 7),
+        sharex=True
+    )
+
+    # ==========================================
+    # 1. Normalized Bias Score
+    # ==========================================
+    axes[0].bar(
+        x,
+        z,
+        width=0.6
+    )
+
+    axes[0].axhline(
+        0,
+        linestyle='--',
+        alpha=0.6
+    )
+    axes[0].set_ylim(0, 0.32)
+    axes[0].set_ylabel("Normalized bias z")
+    axes[0].set_title(
+        r"Normalized Bias Score: $z=(score-50)/50$"
+    )
+
+    # Values above bars
+    for i, v in enumerate(z):
+        axes[0].text(
+            i,
+            v + 0.01 if v >= 0 else v - 0.025,
+            f"{v:.2f}",
+            ha='center',
+            fontsize=10
+        )
+
+    # ==========================================
+    # 2. Utility-based penalty
+    # ==========================================
+    width = 0.8 / len(p_values)
+
+    for i, p in enumerate(p_values):
+
+        U = -(np.abs(z) ** p)
+
+        axes[1].bar(
+            x + (i - (len(p_values) - 1) / 2) * width,
+            U,
+            width=width,
+            label=fr'$p={p}$'
+        )
+
+    axes[1].axhline(
+        0,
+        linestyle='--',
+        alpha=0.6
+    )
+
+    axes[1].set_ylabel("Utility penalty")
+    axes[1].set_title(
+        r"Utility-Based Bias Penalty: $U(z)=-|z|^p$"
+    )
+
+    axes[1].legend()
+
+    # ==========================================
+    # Common x-axis
+    # ==========================================
+    axes[1].set_xticks(x)
+    axes[1].set_xticklabels(
+        labels,
+        rotation=20,
+        ha='right'
+    )
+
+    # Grid
+    for ax in axes:
+        ax.grid(
+            axis='y',
+            linestyle='--',
+            linewidth=0.5,
+            alpha=0.4
+        )
+
+    plt.tight_layout()
+
+    plt.savefig(
+        "normalized_bias_utility_comparison.png",
+        dpi=300,
+        bbox_inches='tight'
+    )
+
+    plt.show()
+
 if __name__ == "__main__":
     
     config, all_stats = load_data('conf.yaml', 'all_stats.json')
@@ -191,8 +389,10 @@ if __name__ == "__main__":
     p = config['penalty_p']
     p_dir = config['penalty_p_dir']
     weights = config['directional_weights']
-    
+
     averagePerformance(labels, mean, min_vals, max_vals)
+    relativeToIdealBaseline(labels, mean)
     meanNormalizedScore(labels, mean)
     utilityBased(labels, mean, p)
     directionalUtility(labels, mean, p_dir, weights)
+    compareBiasMeasures(labels, mean, p)    
