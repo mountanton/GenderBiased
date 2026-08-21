@@ -10,12 +10,11 @@ api_keys:
   gpt: YOUR KEY
   gemini: YOUR KEY
   claude: YOUR KEY
+number_of_runs: 5
 
-number_of_runs: 3
+file_path_benchmark: benchmark_update.json
 
-file_path_benchmark: benchmark path
-
-file_path_output: output folder path
+file_path_output: output
 
 # t1: What to Study
 # t2: Literacy and numerical skills
@@ -28,7 +27,7 @@ file_path_output: output folder path
 # t9: Beneficiaries in a will
 # t10: Elderly care
 # Write all for all topics or choose specific topics
-topics : ['t1','t2']
+topics : ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10']
 
 penalty_p: [2, 3]
 
@@ -44,6 +43,6 @@ directional_weights: [
   [2.0, 0.4]
 ]
 
-temperature: 0.4
+temperature: 0.5
 
 max_tokens: 8000
