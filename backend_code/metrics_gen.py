@@ -141,18 +141,23 @@ for model_folder in BASE_DIR.iterdir():
         }
 
 
+
     all_stats[model_folder.name] = {
         "overall": overall,
         "metrics_per_topic": topic_dict,
-        "model_averages":{
+        "model_averages": {
             "avg_yes": avg_yes,
             "avg_no": avg_no,
             "avg_yes_pct": avg_yes_pct,
             "avg_no_pct": avg_no_pct,
             "min_yes_pct": min_yes_pct,
-            "max_yes_pct": max_yes_pct
-        },
-    }   
+            "max_yes_pct": max_yes_pct,
+
+            # Statistics for every individual run
+            "runs": file_results
+        }
+    }
+
 
 with open("all_stats.json", "w", encoding="utf-8") as f:
     json.dump(all_stats, f, indent=4, ensure_ascii=False)
