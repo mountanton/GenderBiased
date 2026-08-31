@@ -21,8 +21,10 @@ def get_metrics(all_stats):
     means = []
     mins = []
     maxes = []
+    runs = []
 
     for model_name, stats in all_stats.items():
+
         labels.append(model_name)
 
         averages = stats["model_averages"]
@@ -31,7 +33,21 @@ def get_metrics(all_stats):
         mins.append(averages["min_yes_pct"])
         maxes.append(averages["max_yes_pct"])
 
-    return labels, np.array(means), np.array(mins), np.array(maxes)    
+        # Get the scores of every run
+        run_scores = [
+            run["yes_pct"]
+            for run in averages["runs"]
+        ]
+
+        runs.append(run_scores)
+
+    return (
+        labels,
+        np.array(means),
+        np.array(mins),
+        np.array(maxes),
+        runs
+    ) 
 
 def averagePerformance(labels, mean, min_vals, max_vals):
     
@@ -380,19 +396,179 @@ def compareBiasMeasures(labels, mean, p_values):
 
     plt.show()
 
-if __name__ == "__main__":
-    
-    config, all_stats = load_data('conf.yaml', 'all_stats.json')
+def utility1(labels, runs, p_values):
 
-    labels, mean, min_vals, max_vals = get_metrics(all_stats)
+    x = np.arange(len(labels))
+
+    width = 0.8 / len(p_values)
+
+    plt.figure(figsize=(12, 6))
+
+    for i, p in enumerate(p_values):
+
+        utility_scores = []
+
+        for run_scores in runs:
+
+            # Convert run scores to numpy array
+            scores = np.array(
+                run_scores,
+                dtype=float
+            )
+
+            # ------------------------------------------
+            # Utility for each run:
+            #
+            # U(m,r) = (50 - score(m,r))^p
+            # ------------------------------------------
+
+            run_utilities = (
+                50 - scores
+            ) ** p
+
+            # ------------------------------------------
+            # Average across runs:
+            #
+            # U_1(m) =
+            # avg_r (50 - score(m,r))^p
+            # ------------------------------------------
+
+            utility = np.mean(run_utilities)
+
+            utility_scores.append(utility)
+
+        utility_scores = np.array(
+            utility_scores
+        )
+
+        # Plot
+        plt.bar(
+            x + (
+                i - (len(p_values) - 1) / 2
+            ) * width,
+            utility_scores,
+            width=width,
+            label=fr'$p={p}$'
+        )
+
+        # Print results
+        print(f"\nUtility 1 -- p = {p}")
+
+        for model, value in zip(
+            labels,
+            utility_scores
+        ):
+            print(
+                f"{model}: {value:.4f}"
+            )
+
+    plt.axhline(
+        0,
+        linestyle='--',
+        alpha=0.6
+    )
+
+    plt.xticks(
+        x,
+        labels,
+        rotation=20,
+        ha='right',
+        fontsize=12
+    )
+
+    plt.yticks(
+        fontsize=12
+    )
+
+    plt.ylabel(
+        r'$U_1(m)=\frac{1}{|R|}\sum_r(50-score(m,r))^p$',
+        fontsize=14
+    )
+
+    plt.title(
+        'Utility-based Score per Model',
+        fontsize=16
+    )
+
+    plt.legend(
+        fontsize=12
+    )
+
+    plt.grid(
+        axis='y',
+        linestyle='--',
+        linewidth=0.5,
+        alpha=0.4
+    )
+
+    plt.xlim(
+        -0.6,
+        len(labels) - 0.4
+    )
+
+    plt.tight_layout()
+
+    plt.savefig(
+        "utility1.png",
+        dpi=300,
+        bbox_inches='tight'
+    )
+
+    plt.show()
+
+if __name__ == "__main__":
+
+    config, all_stats = load_data(
+        'conf.yaml',
+        'all_stats.json'
+    )
+
+    labels, mean, min_vals, max_vals, runs = get_metrics(
+        all_stats
+    )
 
     p = config['penalty_p']
     p_dir = config['penalty_p_dir']
     weights = config['directional_weights']
 
-    averagePerformance(labels, mean, min_vals, max_vals)
-    relativeToIdealBaseline(labels, mean)
-    meanNormalizedScore(labels, mean)
-    utilityBased(labels, mean, p)
-    directionalUtility(labels, mean, p_dir, weights)
-    compareBiasMeasures(labels, mean, p)    
+    utility1(
+        labels,
+        runs,
+        p
+    )
+
+    averagePerformance(
+        labels,
+        mean,
+        min_vals,
+        max_vals
+    )
+
+    relativeToIdealBaseline(
+        labels,
+        mean
+    )
+
+    meanNormalizedScore(
+        labels,
+        mean
+    )
+
+    utilityBased(
+        labels,
+        mean,
+        p
+    )
+
+    directionalUtility(
+        labels,
+        mean,
+        p_dir,
+        weights
+    )
+
+    compareBiasMeasures(
+        labels,
+        mean,
+        p
+    )
