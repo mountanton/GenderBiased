@@ -74,7 +74,44 @@
             "avg_yes_pct": 54.44444444444444,
             "avg_no_pct": 45.55555555555556,
             "min_yes_pct": 47.22222222222222,
-            "max_yes_pct": 58.333333333333336
+            "max_yes_pct": 58.333333333333336,
+            "runs": [
+                {
+                    "model": "results_run1_claude_haiku_4_5_20260820_022922.json",
+                    "yes": 20,
+                    "no": 16,
+                    "yes_pct": 55.55555555555556,
+                    "no_pct": 44.44444444444444
+                },
+                {
+                    "model": "results_run2_claude_haiku_4_5_20260820_023400.json",
+                    "yes": 21,
+                    "no": 15,
+                    "yes_pct": 58.333333333333336,
+                    "no_pct": 41.66666666666667
+                },
+                {
+                    "model": "results_run3_claude_haiku_4_5_20260820_023831.json",
+                    "yes": 19,
+                    "no": 17,
+                    "yes_pct": 52.77777777777778,
+                    "no_pct": 47.22222222222222
+                },
+                {
+                    "model": "results_run4_claude_haiku_4_5_20260820_024321.json",
+                    "yes": 21,
+                    "no": 15,
+                    "yes_pct": 58.333333333333336,
+                    "no_pct": 41.66666666666667
+                },
+                {
+                    "model": "results_run5_claude_haiku_4_5_20260820_024758.json",
+                    "yes": 17,
+                    "no": 19,
+                    "yes_pct": 47.22222222222222,
+                    "no_pct": 52.77777777777778
+                }
+            ]
         }
     },
     "claude-sonnet-4-6": {
@@ -152,7 +189,44 @@
             "avg_yes_pct": 54.44444444444444,
             "avg_no_pct": 45.55555555555556,
             "min_yes_pct": 41.66666666666667,
-            "max_yes_pct": 66.66666666666666
+            "max_yes_pct": 66.66666666666666,
+            "runs": [
+                {
+                    "model": "results_run1_claude_sonnet_4_6_20260820_013822.json",
+                    "yes": 15,
+                    "no": 21,
+                    "yes_pct": 41.66666666666667,
+                    "no_pct": 58.333333333333336
+                },
+                {
+                    "model": "results_run2_claude_sonnet_4_6_20260820_014825.json",
+                    "yes": 19,
+                    "no": 17,
+                    "yes_pct": 52.77777777777778,
+                    "no_pct": 47.22222222222222
+                },
+                {
+                    "model": "results_run3_claude_sonnet_4_6_20260820_015826.json",
+                    "yes": 19,
+                    "no": 17,
+                    "yes_pct": 52.77777777777778,
+                    "no_pct": 47.22222222222222
+                },
+                {
+                    "model": "results_run4_claude_sonnet_4_6_20260820_020908.json",
+                    "yes": 24,
+                    "no": 12,
+                    "yes_pct": 66.66666666666666,
+                    "no_pct": 33.33333333333333
+                },
+                {
+                    "model": "results_run5_claude_sonnet_4_6_20260820_021956.json",
+                    "yes": 21,
+                    "no": 15,
+                    "yes_pct": 58.333333333333336,
+                    "no_pct": 41.66666666666667
+                }
+            ]
         }
     },
     "deepseek-chat": {
@@ -230,7 +304,44 @@
             "avg_yes_pct": 64.44444444444443,
             "avg_no_pct": 35.55555555555556,
             "min_yes_pct": 61.111111111111114,
-            "max_yes_pct": 66.66666666666666
+            "max_yes_pct": 66.66666666666666,
+            "runs": [
+                {
+                    "model": "results_run1_deepseek_chat_20260820_004349.json",
+                    "yes": 23,
+                    "no": 13,
+                    "yes_pct": 63.888888888888886,
+                    "no_pct": 36.11111111111111
+                },
+                {
+                    "model": "results_run2_deepseek_chat_20260820_005151.json",
+                    "yes": 22,
+                    "no": 14,
+                    "yes_pct": 61.111111111111114,
+                    "no_pct": 38.88888888888889
+                },
+                {
+                    "model": "results_run3_deepseek_chat_20260820_005950.json",
+                    "yes": 23,
+                    "no": 13,
+                    "yes_pct": 63.888888888888886,
+                    "no_pct": 36.11111111111111
+                },
+                {
+                    "model": "results_run4_deepseek_chat_20260820_010743.json",
+                    "yes": 24,
+                    "no": 12,
+                    "yes_pct": 66.66666666666666,
+                    "no_pct": 33.33333333333333
+                },
+                {
+                    "model": "results_run5_deepseek_chat_20260820_011507.json",
+                    "yes": 24,
+                    "no": 12,
+                    "yes_pct": 66.66666666666666,
+                    "no_pct": 33.33333333333333
+                }
+            ]
         }
     },
     "deepseek-reasoner": {
@@ -306,9 +417,46 @@
             "avg_yes": 22.0,
             "avg_no": 14.0,
             "avg_yes_pct": 61.11111111111111,
-            "avg_no_pct": 38.888888888888886,
+            "avg_no_pct": 38.88888888888889,
             "min_yes_pct": 58.333333333333336,
-            "max_yes_pct": 63.888888888888886
+            "max_yes_pct": 63.888888888888886,
+            "runs": [
+                {
+                    "model": "results_run1_deepseek_reasoner_20260820_012510.json",
+                    "yes": 21,
+                    "no": 15,
+                    "yes_pct": 58.333333333333336,
+                    "no_pct": 41.66666666666667
+                },
+                {
+                    "model": "results_run2_deepseek_reasoner_20260820_013528.json",
+                    "yes": 23,
+                    "no": 13,
+                    "yes_pct": 63.888888888888886,
+                    "no_pct": 36.11111111111111
+                },
+                {
+                    "model": "results_run3_deepseek_reasoner_20260820_014502.json",
+                    "yes": 22,
+                    "no": 14,
+                    "yes_pct": 61.111111111111114,
+                    "no_pct": 38.88888888888889
+                },
+                {
+                    "model": "results_run4_deepseek_reasoner_20260820_015320.json",
+                    "yes": 22,
+                    "no": 14,
+                    "yes_pct": 61.111111111111114,
+                    "no_pct": 38.88888888888889
+                },
+                {
+                    "model": "results_run5_deepseek_reasoner_20260820_020204.json",
+                    "yes": 22,
+                    "no": 14,
+                    "yes_pct": 61.111111111111114,
+                    "no_pct": 38.88888888888889
+                }
+            ]
         }
     },
     "gpt-4o-2024-08-06": {
@@ -386,7 +534,44 @@
             "avg_yes_pct": 59.44444444444444,
             "avg_no_pct": 40.55555555555556,
             "min_yes_pct": 50.0,
-            "max_yes_pct": 66.66666666666666
+            "max_yes_pct": 66.66666666666666,
+            "runs": [
+                {
+                    "model": "results_run1_gpt_4o_2024_08_06_20260820_005550.json",
+                    "yes": 23,
+                    "no": 13,
+                    "yes_pct": 63.888888888888886,
+                    "no_pct": 36.11111111111111
+                },
+                {
+                    "model": "results_run2_gpt_4o_2024_08_06_20260820_010058.json",
+                    "yes": 22,
+                    "no": 14,
+                    "yes_pct": 61.111111111111114,
+                    "no_pct": 38.88888888888889
+                },
+                {
+                    "model": "results_run3_gpt_4o_2024_08_06_20260820_010532.json",
+                    "yes": 24,
+                    "no": 12,
+                    "yes_pct": 66.66666666666666,
+                    "no_pct": 33.33333333333333
+                },
+                {
+                    "model": "results_run4_gpt_4o_2024_08_06_20260820_011029.json",
+                    "yes": 20,
+                    "no": 16,
+                    "yes_pct": 55.55555555555556,
+                    "no_pct": 44.44444444444444
+                },
+                {
+                    "model": "results_run5_gpt_4o_2024_08_06_20260820_011512.json",
+                    "yes": 18,
+                    "no": 18,
+                    "yes_pct": 50.0,
+                    "no_pct": 50.0
+                }
+            ]
         }
     },
     "gpt-4o-mini": {
@@ -464,7 +649,44 @@
             "avg_yes_pct": 55.55555555555556,
             "avg_no_pct": 44.44444444444444,
             "min_yes_pct": 47.22222222222222,
-            "max_yes_pct": 63.888888888888886
+            "max_yes_pct": 63.888888888888886,
+            "runs": [
+                {
+                    "model": "results_run1_gpt_4o_mini_20260820_002347.json",
+                    "yes": 22,
+                    "no": 14,
+                    "yes_pct": 61.111111111111114,
+                    "no_pct": 38.88888888888889
+                },
+                {
+                    "model": "results_run2_gpt_4o_mini_20260820_002950.json",
+                    "yes": 20,
+                    "no": 16,
+                    "yes_pct": 55.55555555555556,
+                    "no_pct": 44.44444444444444
+                },
+                {
+                    "model": "results_run3_gpt_4o_mini_20260820_003606.json",
+                    "yes": 17,
+                    "no": 19,
+                    "yes_pct": 47.22222222222222,
+                    "no_pct": 52.77777777777778
+                },
+                {
+                    "model": "results_run4_gpt_4o_mini_20260820_004152.json",
+                    "yes": 18,
+                    "no": 18,
+                    "yes_pct": 50.0,
+                    "no_pct": 50.0
+                },
+                {
+                    "model": "results_run5_gpt_4o_mini_20260820_004726.json",
+                    "yes": 23,
+                    "no": 13,
+                    "yes_pct": 63.888888888888886,
+                    "no_pct": 36.11111111111111
+                }
+            ]
         }
     }
 }
