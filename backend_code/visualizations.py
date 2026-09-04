@@ -531,11 +531,7 @@ if __name__ == "__main__":
     p_dir = config['penalty_p_dir']
     weights = config['directional_weights']
 
-    utility1(
-        labels,
-        runs,
-        p
-    )
+ 
 
     averagePerformance(
         labels,
@@ -554,21 +550,27 @@ if __name__ == "__main__":
         mean
     )
 
-    utilityBased(
-        labels,
-        mean,
-        p
+    utility1(
+            labels,
+            runs,
+            p
     )
 
-    directionalUtility(
-        labels,
-        mean,
-        p_dir,
-        weights
-    )
+   # utilityBased(
+   #     labels,
+  #      mean,
+  #      p
+  #  )
 
-    compareBiasMeasures(
-        labels,
-        mean,
-        p
-    )
+   # directionalUtility(
+   #     labels,
+   #     mean,
+   #     p_dir,
+   #     weights
+   # )
+
+   # compareBiasMeasures(
+    #    labels,
+    #    mean,
+    #    p
+   # )
