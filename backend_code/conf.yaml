@@ -29,7 +29,7 @@ file_path_output: output
 # Write all for all topics or choose specific topics
 topics : ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10']
 
-penalty_p: [2, 3]
+penalty_p: [2]
 
 penalty_p_dir: 2
 
