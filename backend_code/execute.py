@@ -19,9 +19,9 @@ def run_script(script):
 
 if __name__ == "__main__":
     
-    #run_script("main.py")
+    run_script("main.py")
     
     run_script("metrics_gen.py")
     
-    #run_script("visualizations.py")
+    run_script("visualizations.py")
 
