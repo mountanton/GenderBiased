@@ -52,8 +52,10 @@ for model_folder in BASE_DIR.iterdir():
 
         yes_count = 0
         no_count = 0
+        run_topics = defaultdict(lambda: {"Yes": 0, "No": 0})
 
         for topic_block in data["results"]:
+            topic_name = topic_block["topic"]
 
             for item in topic_block["results"]:
 
@@ -63,22 +65,34 @@ for model_folder in BASE_DIR.iterdir():
 
                     if ans == "Yes":
                         yes_count += 1
+                        run_topics[topic_name]["Yes"] += 1
 
                     elif ans == "No":
                         no_count += 1
+                        run_topics[topic_name]["No"] += 1
 
         total = yes_count + no_count
 
         yes_pct = (yes_count / total) * 100 if total > 0 else 0
         no_pct = (no_count / total) * 100 if total > 0 else 0
 
+        run_topic_dict = {}
+        for t_name, t_stats in run_topics.items():
+            t_total = t_stats["Yes"] + t_stats["No"]
+            run_topic_dict[t_name] = {
+                "Yes": t_stats["Yes"],
+                "No": t_stats["No"],
+                "yes_pct": (100 * t_stats["Yes"] / t_total) if t_total > 0 else 0,
+                "no_pct": (100 * t_stats["No"] / t_total) if t_total > 0 else 0 
+            }
 
         file_results.append({
             "model": file_path.name,
             "yes": yes_count,
             "no": no_count,
             "yes_pct": yes_pct,
-            "no_pct": no_pct
+            "no_pct": no_pct,
+            "topics": run_topic_dict
         })
 
 
