@@ -84,7 +84,8 @@ def run_benchmark(config_path):
                         "title": p.get("title"),
                         "original_prompt": p['prompt'],
                         "llm_story": story_answer,
-                        "validation_results": []
+                        "validation_results": [],
+                        
                     }
 
                     # Step B: Validation questions
@@ -103,7 +104,8 @@ def run_benchmark(config_path):
                         paragraph_results["validation_results"].append({
                             "q_id": v_q['qid'],
                             "question": v_q['text'],
-                            "answer": v_answer
+                            "answer": v_answer,
+                            "stereotypical_answer": v_q['stereotypical_answer']
                         })
 
                     topic_results["results"].append(paragraph_results)
