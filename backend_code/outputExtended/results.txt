@@ -1,0 +1,44 @@
+Claude
+============================================================
+OVERALL CONFUSION MATRIX
+============================================================
+            Predicted Yes  Predicted No
+Actual Yes            195           100
+Actual No             138           223
+
+Accuracy: 63.72%
+Valid samples: 656
+
+Deepseek-Chat
+============================================================
+OVERALL CONFUSION MATRIX
+============================================================
+            Predicted Yes  Predicted No
+Actual Yes            183            97
+Actual No             150           226
+
+Accuracy: 62.35%
+Valid samples: 656
+
+gpt-4-mini
+============================================================
+OVERALL CONFUSION MATRIX
+============================================================
+            Predicted Yes  Predicted No
+Actual Yes            201           120
+Actual No             132           203
+
+Accuracy: 61.59%
+Valid samples: 656
+
+
+Deepseek Reasoner
+============================================================
+OVERALL CONFUSION MATRIX
+============================================================
+            Predicted Yes  Predicted No
+Actual Yes            192           131
+Actual No             141           191
+
+Accuracy: 58.47%
+Valid samples: 655
