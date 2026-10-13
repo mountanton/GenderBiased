@@ -4,7 +4,7 @@ This document summarizes the cost, accuracy, and provider-level cost summaries f
 
 ## Detailed Model Comparison
 
-| Cost ($) | Model | Accuracy (1 run) | Cost for 5 runs ($) |
+| Cost ($) | Model | Steretotype % (1 run) | Cost for 5 runs ($) |
 | :---: | :--- | :---: | :---: |
 | 0.43 | deepseek-chat | 62.53 | 2.2 |
 | 0.90 | deepseek-reasoner | 58.47 | 4.5 |
