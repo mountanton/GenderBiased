@@ -1,0 +1,4 @@
+Cost SUM
+Deepseek ---> 7 Dollars
+GPT ---> 16 Dollars
+Claude --> 25 Dollars
