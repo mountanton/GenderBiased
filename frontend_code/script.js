@@ -137,7 +137,7 @@ function toggleSort(columnName)
         currentData = (sortState === "ascending") ? JSON.parse(JSON.stringify(originalData)).reverse() : JSON.parse(JSON.stringify(originalData));
         
         populateLeaderboard({ headers: leaderHeaders, data: currentData});
-        renderOrUpdateChart(currentData);
+        renderOrUpdateChart(currentData, document.getElementById('metricFilter').value || 'all');
         return;
     }
 
@@ -175,7 +175,7 @@ function toggleSort(columnName)
     }
 
     populateLeaderboard({ headers: leaderHeaders, data: currentData});
-    renderOrUpdateChart(currentData);
+    renderOrUpdateChart(currentData, document.getElementById('metricFilter').value || 'all');
 }
 
 // Color palette for dynamic metrics
@@ -249,6 +249,15 @@ function renderOrUpdateChart(dataArray, selectedMetric = 'all')
                 title: {display: false} /* Handled by HTML */
             },
             scales: { 
+                /* Added for phones */
+                x: {
+                    ticks:{
+                        autoSkip: false,
+                        maxRotation: 45,
+                        minRotation: 45,
+                        font: {size:10}
+                    }
+                },
                 y:{beginAtZero: true, max: 1.0}
             }
         },
@@ -282,17 +291,47 @@ function handleSortChart()
 function openFullscreen()
 {
     const chartElem = document.getElementById('chart-wrapper');
-    if(chartElem && chartElem.requestFullscreen)
+    if(!chartElem) return;
+
+    if(chartElem.requestFullscreen)
     {
-        chartElem.requestFullscreen();
+        chartElem.requestFullscreen().catch(() => enableMobileFallback(chartElem));
     }
+    else if(chartElem.webkitRequestFullscreen)
+    {
+        chartElem.webkitRequestFullscreen();
+    } 
+    else
+    {
+        enableMobileFallback(chartElem);
+    }
+}
+
+function enableMobileFallback(chartElem)
+{
+    chartElem.classList.add('mobile-fullscreen-active');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {if(myInteractiveChart) myInteractiveChart.resize();}, 100);
 }
 
 function closeFullscreen()
 {
+    const chartElem = document.getElementById('chart-wrapper');
+
     if(document.exitFullscreen)
     {
-        document.exitFullscreen();
+        document.exitFullscreen().catch(() => {});
+    }
+    else if(document.webkitExitFullscreen)
+    {
+        document.webkitExitFullscreen();
+    }
+
+    if(chartElem && chartElem.classList.contains('mobile-fullscreen-active'))
+    {
+        chartElem.classList.remove('mobile-fullscreen-active');
+        document.body.style.overflow = '';
+        setTimeout(() => {if(myInteractiveChart) myInteractiveChart.resize();}, 100);
     }
 }
 

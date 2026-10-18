@@ -5,7 +5,7 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvtica Neue", Arial, sans-serif;
 }
 
-body {
+/*body {
     background-color: #F5F5F5;
     color: #f3f4f6;
     padding: 40px 20px 0 20px;
@@ -40,6 +40,57 @@ header h1 {
     font-weight: 700;
     margin-bottom: 8px;
     color: #000000;
+}*/
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overscroll-behavior-y: none;
+    background-color: #F5F5F5;
+}
+
+body {
+    background-color: #F5F5F5;
+    padding: 24px 16px 0 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.header-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #000000;
+    word-break: break-word;
+}
+
+.header-text p {
+    color: #000000;
+    font-size: 0.95rem;
 }
 
 header p {
@@ -47,27 +98,37 @@ header p {
     font-size: 1rem;
 }
 
+/* Adjustment for phones*/
 .table-container {
     background-color: #ffffff;
     border: 1px solid #1f2937;
-    max-height: 500px;
-    overflow-y: auto;
-    overflow-x: auto;
+    height: 480px;
+    max-height: 480px;
+    width: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: auto;
+    overscroll-behavior: none;
+    touch-action: pan-x pan-y;
+    margin-bottom: 24px;
 }
 
 table {
-    width: 100%;
-    min-width: max-content;
-    border-collapse: collapse;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 0;
+    padding: 0;
     text-align: left;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    width: max-content;
+    min-width: 100%;
 }
 
 th  {
     background-color: #ebb000;
     color: #000000;
     font-weight: 600;
-    padding: 16px;
+    padding: 14px 16px;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05rem;
@@ -75,7 +136,7 @@ th  {
     white-space: nowrap;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 5;
 }
 
 th:hover {
@@ -102,7 +163,7 @@ th.active-sort .sort-icon {
 }
 
 td {
-    padding: 16px;
+    padding: 14px 16px;
     border-bottom: 1px solid #1f2937;
     color: #000000;
     white-space: nowrap;
@@ -115,9 +176,9 @@ tr:hover td {
 .rank-col {
     font-weight: 600;
     color: #000000;
-    width: 90px;
+    width: 80px;
     text-align: center;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 
 .model-name {
@@ -150,7 +211,6 @@ tr:hover td {
     font-size: 0.8rem;
     color: #6b7280;
     text-align: center;
-    font-weight: 500;
 }
 
 .about-btn {
@@ -187,7 +247,7 @@ tr:hover td {
 
 .about-card {
     background-color: #ffffff;
-    border: 1px solid #1f2937;
+    border: 1px solid #adafb3;
     padding: 32px;
     color: #000000;
 }
@@ -248,12 +308,10 @@ tr:hover td {
 
 .chart-description {
     color: #374151;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
-    margin-top: 32px;
-    margin-bottom: 8px;
-    text-align: left;
-    word-wrap: break-word;
+    margin-top: 8px;
+    margin-bottom: 24px;
 }
 
 .chart-image {
@@ -287,9 +345,10 @@ tr:hover td {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     width: 100%;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .chart-title {
@@ -297,11 +356,11 @@ tr:hover td {
     font-size: 1.2rem;
     font-weight: 700;
     color: #88888d;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 
 .fullscreen-btn {
-    margin-top: 0;
+    /*margin-top: 0;*/
     background-color: #1f2937;
     color: #ffffff;
     border-color: #1f2937;
@@ -316,28 +375,21 @@ tr:hover td {
 .close-fullscreen-btn {
     display: none;
     position: absolute;
-    top: 16px;
+    top: 12px;
     right: 16px;
     background: #1f2937;
     color: #ffffff;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: bold;
     width: 36px;
     height: 36px;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 100;
-
+    z-index: 1000;
     align-items: center;
     justify-content: center;
-    padding: 0;
-    margin: 0;
-    line-height: 0;
     padding-bottom: 2px;
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
 }
 
 .close-fullscreen-btn:hover {
@@ -346,15 +398,26 @@ tr:hover td {
     transform: scale(1.05);
 }
 
-#chart-wrapper:fullscreen {
-    background-color: #ffffff;
-    padding: 48px 32px 32px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    box-sizing: border-box;
+#chart-wrapper:fullscreen .close-fullscreen-btn,
+#chart-wrapper.mobile-fullscreen-active .close-fullscreen-btn {
+    display: flex !important;
+}
+
+#chart-wrapper:fullscreen,
+#chart-wrapper.mobile-fullscreen-active {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: #ffffff !important;
+    z-index: 999999 !important;
+    padding: 50px 16px 16px 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
 }
 
 #chart-wrapper:fullscreen .close-fullscreen-btn {
@@ -365,24 +428,85 @@ tr:hover td {
     display: flex;
     gap: 8px;
     align-items: center;
-    margin-bottom: 0;
 }
 
 .chart-controls select, .fullscreen-btn {
-    width: auto;
-    padding: 4px 12px;
+    height: 38px;
+    padding: 0 12px;
     border: 1px solid #adafb3;
     border-radius: 6px;
     background-color: #f9fafb;
     color: #374151;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     box-sizing: border-box;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
 }
 
 .chart-controls select:hover {
     border-color: #9ca3af;
     background-color: #ffffff;
+}
+
+#chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.canvas-holder {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.mobile-fullscreen-active {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: #ffffff !important;
+    z-index: 999999 !important;
+    padding: 60px 16px 20px 16px !important;
+    box-sizing: border-box !important;
+}
+
+.mobile-fullscreen-active .close-fullscreen-btn {
+    display: flex !important;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .chart-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .chart-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .chart-controls select, .fullscreen-btn {
+        width: 100%;
+        height: 42px;
+        font-size: 14px;
+    }
 }
