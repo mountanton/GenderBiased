@@ -7,6 +7,26 @@ let sortState = "default";
 let myInteractiveChart = null;
 let currentMetric = ""; //default metric
 
+function determineBiasStatus(yesPct)
+{
+    const deviation = yesPct - 50;
+    const sign = deviation > 0 ? "+" : "";
+    const devStr = ` (${sign}${deviation.toFixed(1)} pp)`;
+
+    if(Math.abs(deviation) <= 5)
+    {
+        return `Neutral${devStr}`;
+    }
+    else if(deviation > 5)
+    {
+        return `Stereotypical${devStr}`;
+    }
+    else
+    {
+        return `Counter-Stereotypical${devStr}`;
+    }
+}
+
 function handleTSV(content)
 {
     const rows = content.split(/\r?\n/).map(r => r.trim()).filter(r => r);
@@ -44,19 +64,62 @@ function handleTSV(content)
 
 function handleJSON(content)
 {
-    if(content.length === 0)
+    if(!content || typeof content !== 'object' || Object.keys(content).length === 0)
     { 
         return {headers: [], data: [] };
     }
 
-    const autoHeaders = Object.keys(content[0]);
+    const modelKeys = Object.keys(content);
 
-    originalData = JSON.parse(JSON.stringify(content));
-    currentData = JSON.parse(JSON.stringify(content));
+    const topics = new Set();
+    modelKeys.forEach(modelName => {
+        const topicsObj = content[modelName]?.metrics_per_topic || {};
+        Object.keys(topicsObj).forEach(t => topics.add(t));
+    });
+    const topicList = Array.from(topics);
+
+    const autoHeaders = ["Rank", "Model", "Overall Stereotypical Answer %", "Bias Status", ...topicList];
+
+    const flattenedRows = modelKeys.map(modelName => {
+        const item = content[modelName];
+        const overallYesPct = item.overall?.yes_pct || 0;
+
+        const row = {
+            "Model": modelName,
+            "Overall Stereotypical Answer %": overallYesPct.toFixed(1) + "%",
+            "Bias Status": determineBiasStatus(overallYesPct),
+            "_raw_overall_yes": overallYesPct
+        };
+
+        topicList.forEach(topic => {
+            const topicData = item.metrics_per_topic?.[topic];
+            if(topicData && typeof topicData.yes_pct === "number")
+            {
+                row[topic] = topicData.yes_pct.toFixed(1) + "%";
+            }
+            else
+            {
+                row[topic] = "N/A"
+            }
+        });
+
+        return row;
+    });
+
+    flattenedRows.sort((a,b) => b._raw_overall_yes - a._raw_overall_yes);
+
+    flattenedRows.forEach((row, index) => {
+        row["Rank"] = index + 1;
+        delete row._raw_overall_yes;
+    });
+
+    originalData = JSON.parse(JSON.stringify(flattenedRows));
+    currentData = JSON.parse(JSON.stringify(flattenedRows));
     leaderHeaders = autoHeaders;
     
     // Set a default metric when data first loads 
-    currentMetric = autoHeaders.find(h => h!=="Rank" && h!=="Model") || autoHeaders[1] || "";
+    //currentMetric = autoHeaders.find(h => h!=="Rank" && h!=="Model") || autoHeaders[1] || "";
+    currentMetric = "Overall Stereotypical Answer %";
 
     return {headers: autoHeaders, data: currentData};
 }
@@ -102,7 +165,7 @@ function populateLeaderboard(parsedResult)
         let rowHTML = "<tr>";
 
         headers.forEach((headerName, index) => {
-            let cellValue = (index === 0) ? (rowIndex + 1) : item[headerName];
+            let cellValue = (index === 0) ? (rowIndex + 1) : (item[headerName] || "-");
 
             if(index === 0)
             {
@@ -126,7 +189,7 @@ function toggleSort(columnName)
         sortState = "default";
     }
 
-    if(columnName !== "Rank" && columnName !== "Model")
+    if(columnName !== "Rank" && columnName !== "Model" && columnName !== "Bias Status")
     {
         currentMetric = columnName;
     }
@@ -181,7 +244,7 @@ function toggleSort(columnName)
 // Color palette for dynamic metrics
 const  METRIC_COLORS = [
     '#ebb000', '#2563eb', '#10b981', '#544936', '#8b5cf6',
-    '#ec4899', '#34242c', '#8d99e0', '#ec6348', '#256b15'
+    '#ec4899', '#34242c', '#8d99e0', '#ec6348', '#256b15', '#03063a'
 ];
 
 function populateMetricDropdown(metrics)
@@ -204,7 +267,7 @@ function renderOrUpdateChart(dataArray, selectedMetric = 'all')
     if(!canvas || !dataArray || dataArray.length === 0) return;
     const ctx = canvas.getContext('2d');
 
-    const metricHeaders = leaderHeaders.filter(h => h!=="Rank" && h!=="Model");
+    const metricHeaders = leaderHeaders.filter(h => h!=="Rank" && h!=="Model" && h !== "Bias Status");
     const metricSelect = document.getElementById('metricFilter');
 
     if(metricSelect && metricSelect.children.length === 0)
@@ -214,7 +277,7 @@ function renderOrUpdateChart(dataArray, selectedMetric = 'all')
 
     const activeMetrics = (selectedMetric === 'all') ? metricHeaders : metricHeaders.filter(m => m === selectedMetric);
 
-    const labels = dataArray.map(item => item["Model"] || item[Object.keys(item)[0]]);
+    const labels = dataArray.map(item => item["Model"]);
 
     const datasets = activeMetrics.map((metric) => {
         const originalIndex = metricHeaders.indexOf(metric);
@@ -245,7 +308,14 @@ function renderOrUpdateChart(dataArray, selectedMetric = 'all')
             maintainAspectRatio: false,
             plugins: {
                 legend: {display: true, position: 'top'},
-                tooltip: {enabled: true},
+                //tooltip: {enabled: true},
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.dataset.label}: ${context.parsed.y}%`;
+                        }
+                    }
+                },
                 title: {display: false} /* Handled by HTML */
             },
             scales: { 
@@ -258,7 +328,7 @@ function renderOrUpdateChart(dataArray, selectedMetric = 'all')
                         font: {size:10}
                     }
                 },
-                y:{beginAtZero: true, max: 1.0}
+                y:{beginAtZero: true, max: 100, ticks: {callback: function(value) {return value + "%";}}}
             }
         },
     });
@@ -274,12 +344,14 @@ function handleSortChart()
     const sortVal = document.getElementById('sortOrder').value;
     const metricVal = document.getElementById('metricFilter').value;
 
+    const targetMetric = (metricVal === 'all') ? "Overall Stereotypical Answer %" : metricVal;
+
     if(sortVal === 'asc')
     {
-        currentData.sort((a, b) => parseFloat(a[metricVal] || 0) - parseFloat(b[metricVal] || 0));
+        currentData.sort((a, b) => parseFloat(a[targetMetric] || 0) - parseFloat(b[targetMetric] || 0));
     } else if(sortVal === 'desc')
     {
-        currentData.sort((a, b) => parseFloat(b[metricVal] || 0) - parseFloat(a[metricVal] || 0));
+        currentData.sort((a, b) => parseFloat(b[targetMetric] || 0) - parseFloat(a[targetMetric] || 0));
     } else
     {
         currentData = JSON.parse(JSON.stringify(originalData));
@@ -336,7 +408,7 @@ function closeFullscreen()
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    fetch('data.json').then(response => {
+    fetch('all_stats_extended.json').then(response => {
         if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         return response.json();
     })
@@ -346,6 +418,6 @@ window.addEventListener('DOMContentLoaded', () => {
         renderOrUpdateChart(currentData);
     })
     .catch(error => {
-        console.error("Could not automatically load data.json:", error.message);
+        console.error("Could not automatically load all_stats_extended.json:", error.message);
     });
 });
