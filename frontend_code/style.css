@@ -48,6 +48,8 @@ html, body {
     padding: 0;
     overscroll-behavior-y: none;
     background-color: #F5F5F5;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
@@ -235,14 +237,14 @@ tr:hover td {
     font-size: 0.9rem;
     font-weight: 600;
     color: #ffffff;
-    background-color: #010207;
+    background-color: #ebb000;
     border-radius: 6px;
     text-decoration: none;
     transition: background-color 0.2s;
 }
 
 .aboutPage-btn:hover {
-    background-color: #010207;
+    background-color: #dda601;
 }
 
 .about-card {
@@ -487,6 +489,14 @@ tr:hover td {
 }
 
 @media (max-width: 768px) {
+    .about-card {
+        padding: 20px 16px;
+    }
+
+    .about-card h2 {
+        font-size: 1.4rem;
+    }
+
     header {
         flex-direction: column;
         align-items: flex-start;
