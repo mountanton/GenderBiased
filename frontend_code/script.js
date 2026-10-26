@@ -336,6 +336,22 @@ function renderOrUpdateChart(dataArray, selectedMetric = 'all')
 
 function handleMetricChange(selectedMetric)
 {
+    const sortVal = document.getElementById('sortOrder')?.value || 'default';
+    const targetMetric = (selectedMetric === 'all') ? "overall Stereotypical Answer %" : selectedMetric;
+    
+    if(sortVal === 'asc')
+    {
+        currentData.sort((a, b) => parseFloat(a[targetMetric] || 0) - parseFloat(b[targetMetric] || 0));
+    }
+    else if(sortVal === 'desc')
+    {
+        currentData.sort((a, b) => parseFloat(b[targetMetric] || 0) - parseFloat(a[targetMetric] || 0));
+    }
+    else
+    {
+        currentData = JSON.parse(JSON.stringify(originalData));
+    }
+
     renderOrUpdateChart(currentData, selectedMetric);
 }
 
