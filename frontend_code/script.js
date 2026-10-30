@@ -27,6 +27,22 @@ function determineBiasStatus(yesPct)
     }
 }
 
+function determineBiasStatusSimple(yesPct)
+{
+    if(yesPct >= 50 && yesPct<51)
+    {
+        return "Neutral";
+    }
+    else if(yesPct>51)
+    {
+        return "Stereotypical";
+    }
+    else
+    {
+        return "Counter-Stereotypical";
+    }
+}
+
 function handleTSV(content)
 {
     const rows = content.split(/\r?\n/).map(r => r.trim()).filter(r => r);
@@ -60,6 +76,108 @@ function handleTSV(content)
     }
 
     return { headers: autoHeaders, data: parsedData };
+}
+
+function handleBenchmarkChange(option)
+{
+    const path = (option === 'simple')
+    ? 'all_stats.json'
+    : 'all_stats_extended.json';
+
+    fetch(path)
+        .then(response => {
+            if(!response.ok) throw new Error("Failed to load dataset");
+            return response.json();
+        })
+        .then(data => {
+            currentSortColumn = null;
+            sortState = "default";
+
+            const parsedResult = (option === 'simple')
+            ? handleSimpleJSON(data)
+            : handleJSON(data);
+
+            populateLeaderboard(parsedResult);
+
+            const metricHeaders = leaderHeaders.filter(h => h !== "Rank" && h !== "Model" && h !== "Bias Status");
+            populateMetricDropdown(metricHeaders);
+
+            const metricSelect = document.getElementById('metricFilter');
+            if (metricSelect) metricSelect.value = 'all';
+
+            const sortSelect = document.getElementById('sortOrder');
+            if(sortSelect) sortSelect.value = 'default';
+
+            renderOrUpdateChart(currentData, 'all');
+
+        })
+        .catch(err => console.error("Error loading benchmark:", err));
+}
+
+function handleSimpleJSON(content)
+{
+    if(!content || typeof content !== 'object' || Object.keys(content).length === 0)
+    {
+        return {headers: [], data: []};
+    }
+
+    const modelKeys = Object.keys(content);
+
+    const topics = new Set();
+    modelKeys.forEach(modelName => {
+        const topicsObj = content[modelName]?.metrics_per_topic || {};
+        Object.keys(topicsObj).forEach(t => {
+            const cleanTopic = (t == "marital infidelity") ? "Marital infidelity" : t;
+            topics.add(cleanTopic) 
+        });
+    });
+    const topicList = Array.from(topics);
+
+    const autoHeaders = ["Rank", "Model", "Overall Stereotypical Answer %", "Bias Status", ...topicList];
+
+    const flattenedRows = modelKeys.map(modelName => {
+        const item = content[modelName];
+        const overallYesPct = item.overall?.yes_pct || 0;
+
+        const row = {
+            "Model": modelName,
+            "Overall Stereotypical Answer %": overallYesPct.toFixed(1) + "%",
+            "Bias Status": determineBiasStatusSimple(overallYesPct),
+            "_raw_overall_yes": overallYesPct
+        };
+
+        const metricsObj = item.metrics_per_topic || {};
+        topicList.forEach(topic => {
+            const topicData = metricsObj[topic] || metricsObj[topic.toLowerCase()];
+            if(topicData && typeof topicData.yes_pct === "number")
+            {
+                row[topic] = topicData.yes_pct.toFixed(1) + "%";
+            }
+            else
+            {
+                row[topic] = "N/A"
+            }
+        });
+
+        return row;
+    });
+
+    flattenedRows.sort((a,b) => b._raw_overall_yes - a._raw_overall_yes);
+
+    flattenedRows.forEach((row, index) => {
+        row["Rank"] = index + 1;
+        delete row._raw_overall_yes;
+    });
+
+    originalData = JSON.parse(JSON.stringify(flattenedRows));
+    currentData = JSON.parse(JSON.stringify(flattenedRows));
+    leaderHeaders = autoHeaders;
+    
+    // Set a default metric when data first loads 
+    //currentMetric = autoHeaders.find(h => h!=="Rank" && h!=="Model") || autoHeaders[1] || "";
+    currentMetric = "Overall Stereotypical Answer %";
+
+    return {headers: autoHeaders, data: currentData};
 }
 
 function handleJSON(content)
@@ -337,7 +455,7 @@ function renderOrUpdateChart(dataArray, selectedMetric = 'all')
 function handleMetricChange(selectedMetric)
 {
     const sortVal = document.getElementById('sortOrder')?.value || 'default';
-    const targetMetric = (selectedMetric === 'all') ? "overall Stereotypical Answer %" : selectedMetric;
+    const targetMetric = (selectedMetric === 'all') ? "Overall Stereotypical Answer %" : selectedMetric;
     
     if(sortVal === 'asc')
     {

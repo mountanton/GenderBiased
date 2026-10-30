@@ -20,6 +20,13 @@
             <p>Comparison and ranking of AI models under the scope of AI ethics, specifically gender bias.</p>
         </header>
 
+        <div class="table-controls">
+            <select id="benchmarkOption" onchange="handleBenchmarkChange(this.value)">
+                <option value="extended" selected>Extended Benchmark Data</option>
+                <option value="simple">Simple Benchmark Data</option>
+            </select>
+        </div>
+
         <div class="table-container">
             <table>
                 <thead>
@@ -31,6 +38,10 @@
                     <!-- Rows will inject here dynamically-->
                 </tbody>
             </table>
+        </div>
+
+        <div class="before-section">
+            <p>Gender neutrality corresponds to 50%</p>
         </div>
 
         <div class="section">
@@ -64,6 +75,7 @@
         <footer class="footer">
             Version 1.0 · 2026-2027 CSD-UOC & FORTH
             <a href="about.html" class="about-btn">About</a>
+            <a href="https://github.com/mountanton/GenderBiased" target="_blank" class="about-btn">GitHub</a>
         </footer>
     </main>
 

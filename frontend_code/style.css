@@ -207,6 +207,43 @@ tr:hover td {
     background: #a8a8a8;
 }
 
+.table-controls {
+    display: flex;
+    margin-left: auto;
+    margin-bottom: 8px;
+    gap: 8px;
+    align-items: center;
+}
+
+.table-controls select {
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #adafb3;
+    border-radius: 6px;
+    background-color: #f9fafb;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+.table-controls select:hover {
+    border-color: #9ca3af;
+    background-color: #ffffff;
+}
+
+.before-section {
+    color: #88888d;
+    font-size: 0.95rem;
+    margin: 0;
+    text-align: left;
+    margin-top: 8px;
+}
+
 .footer {
     margin-top: auto;
     padding: 24px 20px;
@@ -489,6 +526,17 @@ tr:hover td {
 }
 
 @media (max-width: 768px) {
+    .table-controls {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .table-controls select {
+        width: 100%;
+        height: 42px;
+        font-size: 14px;
+    }
+
     .about-card {
         padding: 20px 16px;
     }
