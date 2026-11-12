@@ -81,8 +81,8 @@ function handleTSV(content)
 function handleBenchmarkChange(option)
 {
     const path = (option === 'simple')
-    ? 'all_stats.json'
-    : 'all_stats_extended.json';
+    ? '../backend_code/all_stats.json'
+    : '../backend_code/outputExtended/all_stats_extended.json';
 
     fetch(path)
         .then(response => {
@@ -192,7 +192,10 @@ function handleJSON(content)
     const topics = new Set();
     modelKeys.forEach(modelName => {
         const topicsObj = content[modelName]?.metrics_per_topic || {};
-        Object.keys(topicsObj).forEach(t => topics.add(t));
+        Object.keys(topicsObj).forEach(t => {
+            const cleanTopic = (t == "marital infidelity") ? "Marital infidelity" : t;
+            topics.add(cleanTopic) 
+        });
     });
     const topicList = Array.from(topics);
 
@@ -210,7 +213,7 @@ function handleJSON(content)
         };
 
         topicList.forEach(topic => {
-            const topicData = item.metrics_per_topic?.[topic];
+            const topicData = item.metrics_per_topic?.[topic] || item.metrics_per_topic?.[topic.toLowerCase()];
             if(topicData && typeof topicData.yes_pct === "number")
             {
                 row[topic] = topicData.yes_pct.toFixed(1) + "%";
@@ -361,7 +364,7 @@ function toggleSort(columnName)
 
 // Color palette for dynamic metrics
 const  METRIC_COLORS = [
-    '#ebb000', '#2563eb', '#10b981', '#544936', '#8b5cf6',
+    '#b4a4be', '#2563eb', '#10b981', '#544936', '#8b5cf6',
     '#ec4899', '#34242c', '#8d99e0', '#ec6348', '#256b15', '#03063a'
 ];
 
@@ -542,7 +545,7 @@ function closeFullscreen()
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    fetch('all_stats_extended.json').then(response => {
+    fetch('../backend_code/outputExtended/all_stats_extended.json').then(response => {
         if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         return response.json();
     })
